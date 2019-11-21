@@ -1,0 +1,143 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="style.css" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/prettyPhoto.css" rel="stylesheet"> 
+	<link href="css/font-awesome.min.css" rel="stylesheet"> 
+	<link href="css/animate.css" rel="stylesheet"> 
+	<link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet"> 
+    <link href="style.css" rel="stylesheet"> 
+</head>
+<body>
+    <main>
+            <%- include('includes/navigation.ejs') %>
+            <div style="top:50px; position:absolute">
+                    <h1>Customer Controller Form</h1>
+                    <br> <br>
+                    <h1>Wellcome Customer: <%= cus.name %></h1>
+                    <br> <br>
+                    <h3>E-Catalog</h3>
+                    <% if (ecatalog.length > 0) {%>
+                        <div >
+                            <% for (let cata of ecatalog) {%>
+                                <article >
+                                    <div >
+                                        <p >Position: <%= cata.pos %></p>
+                                    </div>
+                                    <div >
+                                        <p >Price: <%= cata.price %></p>
+                                    </div>
+                                </article>
+                                <br>
+                            <% } %>
+                        </div> 
+                        <%} else {%>
+                            <h3>Out of stock!</h3>
+                            
+                        <% } %>
+                    <br> <br>
+                    <h3>Buy (Not really)</h3>
+                    <form action="/buy-ad" method="POST">
+                        <input type="number" name="pos" placeholder="Position" required>
+                        <input type="number" name="time" placeholder="Time" required>
+                        <input type="submit" value="Add to cart">
+                    </form>
+                    <p>Note: You must wait, until admin accept you</p>
+                    <br> <br>
+                    <h3>Cart</h3>
+                    <br> <br>
+                    <h3>Change Password </h3>
+                    <br> <br>
+                </div>
+            <div style="top:150px; right: 0px; position:absolute" >
+                <h3>Advertisement Controller</h3>
+                <% if (customer.length > 0) {%>
+                    <table id="t01" >
+                        <!--Tạo độ rộng cho cột của table-->
+                        <colgroup>
+                            <col width="100" span="2"> <!--6 ô từ trái sang, mỗi ô là 100px-->
+                          </colgroup>
+                        <tr>
+                               
+                            <th>Pos</th>
+                            <th>Customer</th> 
+                            <th>Start day</th>
+                            <th>End day</th>
+                            <th>Click</th>
+                            <th>View</th>
+                            <th>View URL</th>
+                            
+                        </tr>
+                     
+                    <% for (let cus of customer) {%>
+                        <tr>
+                            <td><%= cus.pos %></td>
+        
+                            <% if (cus.customer_id != null) {%>
+                            <td><%= cus.customer_id %>
+                                </td>
+                            <%} else {%>
+                                <td>-------------------</td>
+                                
+                            <% } %>
+        
+                                <% if (cus.start_day != null) {%>
+                            <td><%= cus.start_day %></td>
+                            <%} else {%>
+                                <td>-------------------</td>
+                                
+                            <% } %>
+        
+                            <% if (cus.end_day != null) {%>
+                            <td><%= cus.end_day %></td>
+                            <%} else {%>
+                                <td>-------------------</td>
+                                
+                            <% } %>
+        
+                            <% if (cus.click != null) {%>
+                            <td><%= cus.click %></td>
+                            <%} else {%>
+                                <td>-------------------</td>
+                                
+                            <% } %>
+
+                            <% if (cus.view != null) {%>
+                                <td><%= cus.view %></td>
+                                <%} else {%>
+                                    <td>-------------------</td>
+                                    
+                                <% } %>
+
+                                <!--view url-->
+                                <td>
+                                <form action="/watchad2" method="POST">
+                                    <input type="hidden" value="<%= cus.pos %>" name="cusid">
+                                        <button class="btn" type="submit">View And Update</button>
+                                </form>
+                            </td>
+                                <!--add URL-->
+
+        
+                        </tr>
+                        <% } %>
+                    </table>    
+                    <%} else {%>
+                        <h3>No Advertisement Found!</h3>
+                        
+                    <% } %>
+                    <!--Kết thúc table-->
+                    <h3>Update Customer Password</h3>
+                    <form action="/fixcuspass" method="POST">
+                        <input type="password" name="oldpass" placeholder="Old PassWord" required>
+                        <input type="password" name="newpass" placeholder="New PassWord" required>
+                        <input type="password" name="cfnewpass" placeholder="Confirm new PassWord" required>
+                        <input type="submit" value="Change customer password">
+                    </form>
+                    <br> <br>
+            </div>
+                    
+            
+    </main>
+</body>
+</html>

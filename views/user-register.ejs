@@ -1,0 +1,28 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="style.css" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/prettyPhoto.css" rel="stylesheet"> 
+	<link href="css/font-awesome.min.css" rel="stylesheet"> 
+	<link href="css/animate.css" rel="stylesheet"> 
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet"> 
+</head>
+<body>
+    <main>
+            <%- include('includes/navigation.ejs') %>
+            <center>
+            <body style="top:50px">
+                <div class="register-form">
+                    <h1>Register Form</h1>
+                    <form action="register-form" method="POST">
+                        <input type="text" name="name" placeholder="Username" required>
+                        <input type="password" name="pass" placeholder="Password" required>
+                        <input type="submit">
+                    </form>
+                </div>
+            </body>
+        </center>
+        
+    </main>
+</body>
+</html>

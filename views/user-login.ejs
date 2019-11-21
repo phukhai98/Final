@@ -1,0 +1,29 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="style.css" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/prettyPhoto.css" rel="stylesheet"> 
+<link href="css/font-awesome.min.css" rel="stylesheet"> 
+<link href="css/animate.css" rel="stylesheet"> 
+<link href="css/main.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet"> 
+</head>
+<body>
+    <main>
+            <%- include('includes/navigation.ejs') %>
+        <center>
+            <body style="top:50px">
+                <div class="login-form">
+                    <h1>User Login Form</h1>
+                    <form action="login-user" method="POST">
+                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <input type="submit">
+                    </form>
+                </div>
+            </body>
+        </center>
+        	<!-- do ở trên có center, nếu align mà thuộc tính giống nhau, thì sẽ thành hàng ngang-->
+        
+    </main>
+</body>
+</html>

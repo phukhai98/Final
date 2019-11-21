@@ -1,0 +1,170 @@
+<%- include('includes/head.ejs') %>
+    <meta charset='utf-8' />
+    <title>Navigate the map with game-like controls</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/prettyPhoto.css" rel="stylesheet"> 
+	<link href="css/font-awesome.min.css" rel="stylesheet"> 
+	<link href="css/animate.css" rel="stylesheet"> 
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <br><br><br><br>
+    <!--Phải để phần game ở trước phần chữ-->
+    <div id='map' style="height: 695px; width: 1100px; top:60px" position="relative"></div>
+    <pre id='coordinates' class='coordinates'></pre>
+  
+
+  <div class="all " > <!--sẽ không có </div> cho vị trí này, vì đây là định dạng toàn bộ thộc tính bên trong nó-->
+ <!-- style="position:absolute; left: 600px; bottom: 0px"-->
+  
+</form>
+      <!--user information-->
+      <div class="info">
+
+      <div>
+        <h4 >Player: <%= pokemon.name %></h4>
+       
+      </div>
+      <div>
+        <h4>Level: <%= pokemon.level %></h4>
+
+      </div>
+      <div>
+        <h4>Coin: <%= pokemon.money %></h4>
+      </div>
+
+      <div>
+        <form action="ball" method="POST">
+          <h4>Ball: <%= pokemon.ball %></h4>
+          <p>Price : 100 coin</p>
+        <input type="submit" value="Buy Ball" />
+    </form>
+      </div>
+
+      <div>
+        <h4>Exp: <%= pokemon.process %></h4>
+      </div>
+
+      <p>Nạp code </p>
+      <form action="/add-player-code" method="POST">
+          <input type="text" name="code" placeholder="CodeName" required>
+          <input type="submit" value="Add Code">
+      </form>
+      <br>
+      <!--thay đổi password-->
+        <h3>Update User Password</h3>
+        <form action="/fixuserpass" method="POST">
+            <input type="password" name="oldpass" placeholder="Old PassWord" required>
+            <input type="password" name="newpass" placeholder="New PassWord" required>
+            <input type="password" name="cfnewpass" placeholder="Confirm new PassWord" required>
+            <input type="submit" value="Change customer password">
+        </form>
+        <br> <br>
+        <!--PokeDex-->
+        <button id="myBtn">PokeDex
+            <!-- The Modal -->
+          <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close">&times;</span>
+          <!--pokemon here-->
+          <br>
+          <div>
+                <p>Gengar: <%= pokemon.gengar %></p>
+          </div>
+    
+          <div>
+                <p>Snolax: <%= pokemon.snolax %></p>
+          </div>
+          <div>
+                  <p>Darkrai: <%= pokemon.darkrai %></p>
+          </div>
+          <div>
+                  <p>Squirtle: <%= pokemon.squirtle %></p>
+          </div>
+          <div>
+                  <p>Charmander: <%= pokemon.charmander %></p>
+          </div>
+          <div>
+              <form action="pk6" method="POST">
+                  <p>Sudowoodo: <%= pokemon.sudowoodo %> (Price : 1000 coin)</p>
+                <input type="submit" value="Buy Pokemon" />
+            </form>
+          </div>
+          <div>
+                  <p>Scyther: <%= pokemon.scyther %></p>
+          </div>
+          <div>
+              <form action="pk8" method="POST">
+                  <p>Diglett: <%= pokemon.diglett %>(Price : 1500 coin)</p>
+                <input type="submit" value="Buy Pokemon" />
+            </form>
+          </div>
+          <div>
+                  <p>Bulbasaur: <%= pokemon.bulbasaur %></p>
+          </div>
+          <div>
+                  <p>Beedrill: <%= pokemon.beedrill %></p>
+          </div>
+          <div>
+                  <p>Pikachu: <%= pokemon.pikachu %></p>
+          </div>
+          <div>
+                  <p>Gyrados: <%= pokemon.gyarados %></p>
+    
+          </div>
+          <!--end pokemon here-->
+        </div>  
+    <!--end pokedex-->
+      <h3> Pokemon List </h3>
+    
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+        
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+        
+</body>
+</html>

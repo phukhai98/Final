@@ -1,0 +1,2 @@
+﻿Lần đầu chạy để tạo database, phần mềm chắc chắn sẽ báo lỗi
+Khởi chạy lần 2 để tự động nạp các dữ liệu cần thiết

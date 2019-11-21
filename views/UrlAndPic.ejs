@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UrlAndPic</title>
+</head>
+<body>
+    <h3>Position</h3>
+    <p><%= cus.pos %>
+    <br> <br>
+    <h3>Picture Link</h3>
+    <% if (cus.pic != null) {%>
+        <p><%= cus.pic %>
+        </p>
+        <%} else {%>
+            <p>-------------------</p>
+            <% } %>
+    <br> <br>
+    <h3>Url Link:</h3>
+    <% if (cus.url != null) {%>
+        <p><%= cus.url %>
+        </p>
+        <%} else {%>
+            <p>-------------------</p>
+            
+        <% } %>
+    <br> <br>
+</body>
+</html>

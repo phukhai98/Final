@@ -1,0 +1,255 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="style.css" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/prettyPhoto.css" rel="stylesheet"> 
+<link href="css/font-awesome.min.css" rel="stylesheet"> 
+<link href="css/animate.css" rel="stylesheet"> 
+<link href="css/main.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet"> 
+<link href="style.css" rel="stylesheet"> 
+</head>
+<body>
+            <%- include('includes/navigation.ejs') %>
+       <div style="top:55px;left:1500px; position:absolute">
+        <!--Phải có thuộc tính position:absolute-->
+        <br> 
+        <h3>Welcome admin: <%= adminname.name %></h3>
+        <p>Add code </p>
+        <form action="/add-code" method="POST">
+            <input type="text" name="code" placeholder="CodeName" required>
+            <input type="number" name="coin" placeholder="Price" required>
+            <input type="submit" value="Thêm">
+        </form>
+        <br> <br>
+        <p>Add Admin </p>
+        <form action="/add-admin" method="POST">
+            <input type="text" name="name" placeholder="AdminName" required>
+            <input type="password" name="pass" placeholder="PassWord" required>
+            <input type="submit" value="Thêm">
+        </form>
+        <br> <br>
+        <!--xóa tài khoản người chơi-->
+        <h3>Delete Player</h3>
+        <form action="/delete" method="POST">
+            <input type="text" name="userplayer" placeholder="Username" required>
+            <input type="submit" value="Delete player accout">
+        </form>
+        <br> <br>
+        <!--Xóa tài khoản admin-->
+        <h3>Delete admin accout</h3>
+        <form action="/deletead" method="POST">
+            <input type="submit" value="Delete admin accout">
+        </form>
+        <br> <br>
+        <!--Sửa mật khẩu admin-->
+        <h3>Update Admin Password</h3>
+        <form action="/fixadpass" method="POST">
+            <input type="password" name="oldpass" placeholder="Old PassWord" required>
+            <input type="password" name="newpass" placeholder="New PassWord" required>
+            <input type="password" name="cfnewpass" placeholder="Confirm new PassWord" required>
+            <input type="submit" value="Change admin password">
+        </form>
+        <br> <br>
+        <!--Xóa tài khoản khách hàng-->
+        <h3>Delete Customer Accout</h3>
+        <form action="/deletecus" method="POST">
+                <input type="text" name="userCustomer" placeholder="PassWord" required>
+            <input type="submit" value="Delete customer accout">
+        </form>
+        <br> <br>
+        <!--danh sách code-->
+        <h3>Code List</h3>
+       
+        <% if (fields.length > 0) {%>
+            <div >
+                <% for (let code of fields) {%>
+                    <article >
+                        <div >
+                            <p >Code Name: <%= code.code %></p>
+                        </div>
+                        <div >
+                            <p >Price: <%= code.coin %></p>
+                        </div>
+    
+                        <div >
+                            <p >Used: <% if (code.used == 0) { %>Not Use<% } else { %>Used<% } %></p>
+                        </div>
+                    </article>
+                    <br>
+                <% } %>
+            </div> 
+            <%} else {%>
+                <h3>No Code Found!</h3>
+                
+            <% } %>
+
+            <br> <br>
+
+        <h3>Player List</h3>
+        <% if (players.length > 0) {%>    
+            <div >
+                <% for (let play of players) {%>
+                    <article >
+                        <div >
+                            <p >User Name: <%= play.name %></p>
+                        </div>
+                        <div >
+                            <p >Pass: <%= play.pass %></p>
+                        </div>
+                        <div >
+                            <p >Money: <%= play.money %></p>
+                        </div>
+                        <div >
+                            <p >Ball: <%= play.ball %></p>
+                        </div>
+                    </article>
+                    <br>
+                <% } %>
+            </div> 
+            <%} else {%>
+                <h3>No Player Found!</h3>
+                
+            <% } %>
+            <br> <br>
+    </div>
+            <!--Advertisment-->
+    <div style="top:100px; right: 420px; position:absolute" >
+            <table id="t01" >
+                <!--Tạo độ rộng cho cột của table-->
+                <colgroup>
+                    <col width="100" span="2"> <!--6 ô từ trái sang, mỗi ô là 100px-->
+                  </colgroup>
+                <tr>
+                       
+                    <th>Pos</th>
+                    <th>Customer</th> 
+                    <th>Price</th>
+                    <th>Start day</th>
+                    <th>End day</th>
+                    <th>Click</th>
+                    <th>View</th>
+                    <th>View URL</th>
+                </tr>
+            <% for (let cus of customer) {%>
+                <tr>
+                    <td><%= cus.pos %></td>
+
+                    <% if (cus.customer_id != null) {%>
+                    <td><%= cus.customer_id %>
+                        </td>
+                    <%} else {%>
+                        <td>-------------------</td>
+                        
+                    <% } %>
+
+                        <% if (cus.price != null) {%>
+                    <td><%= cus.price %>
+                       
+                    </td>
+                    <%} else {%>
+                        <td>-------------------</td>
+                        
+                    <% } %>
+
+                        <% if (cus.start_day != null) {%>
+                    <td><%= cus.start_day %></td>
+                    <%} else {%>
+                        <td>-------------------</td>
+                        
+                    <% } %>
+
+                    <% if (cus.end_day != null) {%>
+                    <td><%= cus.end_day %></td>
+                    <%} else {%>
+                        <td>-------------------</td>
+                        
+                    <% } %>
+
+                    <% if (cus.click != null) {%>
+                    <td><%= cus.click %></td>
+                    <%} else {%>
+                        <td>-------------------</td>
+                        
+                    <% } %>
+
+                    <% if (cus.view != null) {%>
+                        <td><%= cus.view %></td>
+                        <%} else {%>
+                            <td>-------------------</td>
+                            
+                        <% } %>
+
+                        <!--view url-->
+                        <td>
+                            <form action="/watchad" method="POST">
+                                <input type="hidden" value="<%= cus.pos %>" name="cusid">
+                                    <button class="btn" type="submit">View URL</button>
+                            </form>
+                        </td>
+
+                </tr>
+                <% } %>
+            </table>
+            <!--Table for url picture-->
+            <!--Sửa giá tiền quảng cáo-->
+            <h3>Fix Price Advertisment</h3>
+            <form action="/fix-price" method="POST">
+                <input type="text" name="pos" placeholder="Position" required>
+                <input type="text" name="price" placeholder="new Price" required>
+                <input type="submit" value="Fix Price">
+            </form>
+            <br> <br>
+            <!--Cấp quyền quảng cáo cho người dùng-->
+            <h3>Grant user permissions</h3>
+            <form action="/authority" method="POST">
+                <input type="text" name="pos" placeholder="Position" required>
+                <input type="text" name="customer_id" placeholder="add customer_id" required>
+                <input type="submit" value="Authorization">
+            </form>
+            <br> <br>
+            <!--Xóa bỏ quyền người dùng-->
+            <h3>Revoke Customer Id</h3>
+            <form action="/revoke-id" method="POST">
+                <input type="text" name="pos" placeholder="Position" required>
+                <input type="submit" value="Revoke this ID">
+            </form>
+            <br> <br>
+            <!--Xóa bỏ link quảng cáo người dùng-->
+            <h3>Revoke Picture Url</h3>
+            <form action="/revoke-picture" method="POST">
+                <input type="text" name="pos" placeholder="Position" required>
+                <input type="submit" value="Revoke this picture">
+            </form>
+            <br> <br>
+            <!--Xóa bỏ link URL người dùng-->
+            <h3>Revoke URL</h3>
+            <form action="/revoke-url" method="POST">
+                <input type="text" name="pos" placeholder="Position" required>
+                <input type="submit" value="Revoke this URL">
+            </form>
+            <br><br>
+            <!--Lấy danh sách khách hàng-->
+            <h3>Customer List</h3>
+            <% if (cus.length > 0) {%>    
+                <div >
+                    <% for (let customer of cus) {%>
+                        <article >
+                            <div >
+                                <p>Customer User Name: <%= customer.name %></p>
+                            </div>
+                            <div >
+                                <p>Customer Password: <%= customer.pass %></p>
+                            </div>
+                        </article>
+                        <br>
+                    <% } %>
+                </div> 
+                <%} else {%>
+                    <h3>No Customer Found!</h3>
+                    
+                <% } %>
+                <br> <br>
+    </div>
+
+</body>
+</html>

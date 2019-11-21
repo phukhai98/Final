@@ -1,0 +1,28 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="style.css" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/prettyPhoto.css" rel="stylesheet"> 
+<link href="css/font-awesome.min.css" rel="stylesheet"> 
+<link href="css/animate.css" rel="stylesheet"> 
+<link href="css/main.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet"> 
+</head>
+<body>
+    <main>
+            <%- include('includes/navigation.ejs') %>
+        <center>
+            <body style="top:50px">
+                <div class="login-form">
+                    <h1>Admin Login Form</h1>
+                    <form action="login" method="POST" target="_blank">
+                        <!--target="_blank" là để mở trong tab mới khi đăng nhập admin-->
+                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <input type="submit">
+                    </form>
+                </div>
+            </body>
+        </center>
+    </main>
+</body>
+</html>
